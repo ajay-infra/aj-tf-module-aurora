@@ -28,3 +28,8 @@ variable "aws_region" {
   type        = string
   description = "AWS region (used in rds-db:connect ARN)"
 }
+
+variable "aws_account_id" {
+  type        = string
+  description = "AWS account ID (used in rds-db:connect ARN). Pass data.aws_caller_identity.current.account_id from root."
+}
