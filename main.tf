@@ -18,11 +18,11 @@ module "db_cluster" {
   subnet_ids          = local.active_data_subnets
   allowed_cidr_blocks = local.allowed_cidr_blocks
 
-  engine_version = var.engine_version
-  instance_class = var.instance_class
-  database_name  = var.database_name
+  engine_version  = var.engine_version
+  instance_class  = var.instance_class
+  database_name   = var.database_name
   master_username = var.master_username
-  replica_count  = var.replica_count
+  replica_count   = var.replica_count
 
   storage_encrypted           = var.storage_encrypted
   enable_iam_auth             = var.enable_iam_auth
@@ -42,10 +42,10 @@ module "db_cluster" {
 module "iam_auth" {
   source = "./modules/iam-auth"
 
-  name_prefix         = local.name_prefix
-  cluster_resource_id = module.db_cluster.cluster_resource_id
+  name_prefix          = local.name_prefix
+  cluster_resource_id  = module.db_cluster.cluster_resource_id
   iam_auth_db_username = var.iam_auth_db_username
-  aws_region          = var.aws_region
+  aws_region           = var.aws_region
 }
 
 # ── Connection Config Bundle (Secrets Manager) ────────────────────────────────

@@ -19,7 +19,7 @@ output "cluster_resource_id" {
     Used in the rds-db:connect IAM policy ARN for RDS IAM authentication.
     Format: arn:aws:rds-db:{region}:{account}:dbuser:{cluster_resource_id}/{db_username}
   EOT
-  value = aws_rds_cluster.aurora.cluster_resource_id
+  value       = aws_rds_cluster.aurora.cluster_resource_id
 }
 
 output "port" {
@@ -43,7 +43,7 @@ output "master_user_secret_arn" {
     This is managed by AWS (manage_master_user_password = true) and auto-rotated.
     Used for admin/break-glass access only. Application code uses RDS IAM tokens.
   EOT
-  value = length(aws_rds_cluster.aurora.master_user_secret) > 0 ? aws_rds_cluster.aurora.master_user_secret[0].secret_arn : null
+  value       = length(aws_rds_cluster.aurora.master_user_secret) > 0 ? aws_rds_cluster.aurora.master_user_secret[0].secret_arn : null
 }
 
 output "security_group_id" {

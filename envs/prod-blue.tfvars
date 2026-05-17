@@ -12,8 +12,8 @@ aws_region   = "us-east-1"
 # data_subnet_ids = ["<from vpc output>"]
 
 blue_vpc_cidr  = "10.122.0.0/16" # prod data VPC CIDR
-green_enabled  = false            # flip to true when green EKS cluster is live
-green_vpc_cidr = ""               # set to green workload VPC CIDR during cutover
+green_enabled  = false           # flip to true when green EKS cluster is live
+green_vpc_cidr = ""              # set to green workload VPC CIDR during cutover
 
 az_count = 3 # prod: 3 AZs — writer + 2 readers spread across all 3 AZs
 

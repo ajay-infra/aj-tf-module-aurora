@@ -10,7 +10,7 @@ output "policy_arn" {
     The role must have this policy attached.
     Managed via aj-infra-release (passed as -var flag to aj-infra-platform).
   EOT
-  value = aws_iam_policy.rds_iam_auth.arn
+  value       = aws_iam_policy.rds_iam_auth.arn
 }
 
 output "policy_name" {

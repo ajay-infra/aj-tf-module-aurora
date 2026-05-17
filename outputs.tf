@@ -35,7 +35,7 @@ output "secret_arn" {
     Consumed by ESO ExternalSecret in k8s-manifests.
     No password — app uses RDS IAM auth tokens at runtime.
   EOT
-  value = aws_secretsmanager_secret.aurora_connection.arn
+  value       = aws_secretsmanager_secret.aurora_connection.arn
 }
 
 output "master_user_secret_arn" {
@@ -44,7 +44,7 @@ output "master_user_secret_arn" {
     Break-glass admin access only. Rotated automatically by AWS.
     Never consumed by application pods.
   EOT
-  value = module.db_cluster.master_user_secret_arn
+  value       = module.db_cluster.master_user_secret_arn
 }
 
 output "iam_auth_policy_arn" {
@@ -53,7 +53,7 @@ output "iam_auth_policy_arn" {
     Attach to the EKS Pod Identity role of each service namespace that needs Aurora access.
     Consumed by aj-infra-release as a -var flag to aj-infra-platform.
   EOT
-  value = module.iam_auth.policy_arn
+  value       = module.iam_auth.policy_arn
 }
 
 output "iam_auth_db_username" {

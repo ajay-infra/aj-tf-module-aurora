@@ -115,8 +115,8 @@ resource "aws_rds_cluster" "aurora" {
   iam_database_authentication_enabled = var.enable_iam_auth
 
   # Backup — Aurora continuous backup with point-in-time recovery
-  backup_retention_period   = var.backup_retention_days
-  preferred_backup_window   = var.backup_window
+  backup_retention_period      = var.backup_retention_days
+  preferred_backup_window      = var.backup_window
   preferred_maintenance_window = var.maintenance_window
 
   # Deletion protection — off for dev (easy teardown), on for prod

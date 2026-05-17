@@ -50,7 +50,7 @@ variable "green_vpc_cidr" {
 # ── AZ Count ──────────────────────────────────────────────────────────────────
 
 variable "az_count" {
-  type = number
+  type        = number
   description = <<-EOT
     Number of Availability Zones to spread cluster instances across.
       2 = dev/staging   (cost-optimised, min for Aurora HA)
@@ -58,7 +58,7 @@ variable "az_count" {
       4 = regulated     (strict SLA)
     Must be <= length(data_subnet_ids). Subnets must be ordered by AZ.
   EOT
-  default = 2
+  default     = 2
   validation {
     condition     = contains([2, 3, 4], var.az_count)
     error_message = "az_count must be 2, 3, or 4."
@@ -68,8 +68,8 @@ variable "az_count" {
 # ── Engine ────────────────────────────────────────────────────────────────────
 
 variable "engine_version" {
-  type    = string
-  default = "16.6"
+  type        = string
+  default     = "16.6"
   description = <<-EOT
     Aurora PostgreSQL engine version.
     Use the full version string (e.g. '16.6'). Aurora manages minor patches automatically.
@@ -82,8 +82,8 @@ variable "engine_version" {
 # ── Instance Class (FinOps) ───────────────────────────────────────────────────
 
 variable "instance_class" {
-  type    = string
-  default = "db.r8g.large"
+  type        = string
+  default     = "db.r8g.large"
   description = <<-EOT
     Aurora instance class. Graviton 4 ARM (r8g family) recommended for all envs.
 
@@ -142,7 +142,7 @@ variable "iam_auth_db_username" {
 # ── Replication ───────────────────────────────────────────────────────────────
 
 variable "replica_count" {
-  type = number
+  type        = number
   description = <<-EOT
     Number of Aurora reader instances (not including the writer).
       0 = writer only  — not recommended (no failover, no reader endpoint)
@@ -151,7 +151,7 @@ variable "replica_count" {
     Aurora always places the writer in one AZ; readers are distributed across remaining AZs.
     RI impact: each reader instance is billed separately — size accordingly.
   EOT
-  default = 1
+  default     = 1
   validation {
     condition     = var.replica_count >= 0 && var.replica_count <= 5
     error_message = "replica_count must be between 0 and 5."
@@ -169,7 +169,7 @@ variable "storage_encrypted" {
 # ── Backup ────────────────────────────────────────────────────────────────────
 
 variable "backup_retention_days" {
-  type = number
+  type        = number
   description = <<-EOT
     Number of days to retain automated backups.
       7  = dev/staging default
@@ -177,7 +177,7 @@ variable "backup_retention_days" {
     Aurora automated backups are continuous (point-in-time recovery within the window).
     Stored in S3 — costs ~$0.021/GB/month beyond 1× instance storage.
   EOT
-  default = 7
+  default     = 7
   validation {
     condition     = var.backup_retention_days >= 1 && var.backup_retention_days <= 35
     error_message = "backup_retention_days must be between 1 and 35."
