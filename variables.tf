@@ -1,5 +1,10 @@
 # ── Core ─────────────────────────────────────────────────────────────────────
 
+variable "aws_account_id" {
+  type        = string
+  description = "AWS account ID — used in rds-db:connect IAM policy ARN. Pass your account ID or use data.aws_caller_identity at the caller level."
+}
+
 variable "cluster_name" {
   type        = string
   description = "Logical cluster name used in resource naming (e.g. 'ai-search-dev')"

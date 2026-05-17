@@ -1,6 +1,8 @@
 # example.tfvars — used by CI plan job (backend=false, fake AWS creds)
 # Mirrors dev topology at minimal cost.
 
+aws_account_id = "123456789012"
+
 environment  = "dev"
 cluster_name = "ai-search-dev"
 aws_region   = "us-east-1"

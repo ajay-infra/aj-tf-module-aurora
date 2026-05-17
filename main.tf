@@ -46,6 +46,7 @@ module "iam_auth" {
   cluster_resource_id  = module.db_cluster.cluster_resource_id
   iam_auth_db_username = var.iam_auth_db_username
   aws_region           = var.aws_region
+  aws_account_id       = var.aws_account_id
 }
 
 # ── Connection Config Bundle (Secrets Manager) ────────────────────────────────

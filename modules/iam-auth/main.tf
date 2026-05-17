@@ -16,8 +16,6 @@
 #   GRANT CONNECT ON DATABASE ai_search TO ai_search_app;
 #   -- Grant table-level permissions as needed per service
 
-data "aws_caller_identity" "current" {}
-
 resource "aws_iam_policy" "rds_iam_auth" {
   name        = "${var.name_prefix}-aurora-iam-auth"
   description = "Allow RDS IAM database authentication for ${var.name_prefix} Aurora — user: ${var.iam_auth_db_username}"
@@ -30,7 +28,7 @@ resource "aws_iam_policy" "rds_iam_auth" {
         Effect = "Allow"
         Action = ["rds-db:connect"]
         Resource = [
-          "arn:aws:rds-db:${var.aws_region}:${data.aws_caller_identity.current.account_id}:dbuser:${var.cluster_resource_id}/${var.iam_auth_db_username}"
+          "arn:aws:rds-db:${var.aws_region}:${var.aws_account_id}:dbuser:${var.cluster_resource_id}/${var.iam_auth_db_username}"
         ]
       }
     ]
