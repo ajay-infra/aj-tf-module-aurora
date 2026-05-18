@@ -12,6 +12,38 @@ pgvector extension is enabled for RAG embedding similarity search. RDS IAM authe
 
 ---
 
+## Where It Fits
+
+**Architecture layer:** L6 — Data (Aurora PostgreSQL)
+**Provisioned by:** `aj-infra-release` — data layer pipeline stage (not yet wired; target: `provision-eks.yml` Stage 4)
+**Depends on:** data VPC subnet IDs from `aj-tf-module-vpc` outputs
+**State key pattern:** `workload/blue-green/<env>/aurora/terraform.tfstate`
+
+## How to Use
+
+Not yet wired into the release pipeline. Planned as Stage 4 of `provision-eks.yml` after the platform stage.
+
+To use manually:
+```bash
+terraform init \
+  -backend-config="bucket=<TF_STATE_BUCKET>" \
+  -backend-config="key=workload/blue-green/<env>/aurora/terraform.tfstate" \
+  -backend-config="region=us-east-1" \
+  -backend-config="use_lockfile=true"
+
+terraform apply \
+  -var-file=aj-infra-release/envs/workload/blue-green/<env>/common.tfvars \
+  -var-file=aj-infra-release/envs/workload/blue-green/<env>/aurora.tfvars \
+  -var="data_subnet_ids=[...]" \
+  -var="blue_vpc_cidr=10.100.0.0/16"
+```
+
+tfvars file to configure: `aj-infra-release/envs/workload/blue-green/<env>/aurora.tfvars`
+
+After apply, run the one-time SQL commands in the "RDS IAM Auth — Post-Provisioning Setup" section to create the app user.
+
+---
+
 ## Module Structure
 
 ```
@@ -26,7 +58,7 @@ root:
   variables.tf  → all input variables with FinOps-aware defaults and EOT descriptions
   outputs.tf    → cluster_endpoint, reader_endpoint, cluster_identifier, secret_arn,
                   security_group_id, iam_auth_policy_arn, master_user_secret_arn
-  providers.tf  → Terraform = 1.7.5, AWS = 5.100.0 (no random provider — AWS manages master password)
+  providers.tf  → Terraform = 1.10.5, AWS = 5.100.0 (no random provider — AWS manages master password)
 ```
 
 ---
