@@ -8,7 +8,7 @@ Provisions an Aurora PostgreSQL cluster with blue/green VPC support, IAM authent
 
 ## Stable ref
 ```
-source = "github.com/ajaylakma/aj-tf-module-aurora?ref=aurora-01"
+source = "github.com/ajay-infra/aj-tf-module-aurora?ref=v1.0.0"
 ```
 
 ## Key inputs
@@ -36,14 +36,16 @@ source = "github.com/ajaylakma/aj-tf-module-aurora?ref=aurora-01"
 | `security_group_id` | DB security group ID |
 
 ## AWS tags applied
-`Env`, `Team`, `ManagedBy`, `CostCenter`, `Model`, `Customer`
+`Project`, `ManagedBy`, `Repository` (from `common_tags`), plus `Environment`, `Team`,
+`CostCenter`, `ClusterName`, `AZCount`, `FinOpsRIFamily` (set in `locals.full_tags`),
+plus whatever's in `var.tags`. No `Env`, `Model`, or `Customer` tag exists in this module.
 
 ## Depends on
 `aj-tf-module-vpc` — requires data_vpc_id and data_subnet_ids
 
 ## Branching convention
 - `main` — active development
-- `aurora-01` — stable pinned release
+- semver tags (`v1.0.0`, ...) — stable pinned releases, per `README.md` usage examples
 
 ## CI checks
 fmt, validate, plan (dry-run), tfsec/checkov

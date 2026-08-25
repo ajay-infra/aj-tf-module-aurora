@@ -26,7 +26,7 @@ root:
   variables.tf  → all input variables with FinOps-aware defaults and EOT descriptions
   outputs.tf    → cluster_endpoint, reader_endpoint, cluster_identifier, secret_arn,
                   security_group_id, iam_auth_policy_arn, master_user_secret_arn
-  providers.tf  → Terraform = 1.7.5, AWS = 5.100.0 (no random provider — AWS manages master password)
+  providers.tf  → Terraform = 1.10.5, AWS = 5.100.0 (no random provider — AWS manages master password)
 ```
 
 ---
