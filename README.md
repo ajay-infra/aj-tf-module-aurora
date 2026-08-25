@@ -38,7 +38,7 @@ All environments use `db.r8g.*` (Graviton 4 ARM). Do not mix instance families a
 
 ```hcl
 module "aurora" {
-  source = "github.com/ajay/aj-tf-module-aurora?ref=v0.1.0"
+  source = "github.com/ajay-infra/aj-tf-module-aurora?ref=v1.0.0"
 
   cluster_name = "ai-search-dev"
   environment  = "dev"
@@ -133,7 +133,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 | Provider | Version |
 |---|---|
-| Terraform | `= 1.7.5` |
+| Terraform | `= 1.10.5` |
 | AWS | `= 5.100.0` |
 
 ---
@@ -141,4 +141,6 @@ CREATE EXTENSION IF NOT EXISTS vector;
 ## Versioning
 
 Semver: `PATCH` = config tweak, `MINOR` = new feature, `MAJOR` = breaking variable change.
-CI auto-tags patch on merge to main.
+The `auto-tag` CI job (patch-bump on merge to `main`) is defined but currently
+commented out in `.github/workflows/ci.yml`, pending the AWS OIDC role + state
+bucket it depends on — tags are cut manually for now.
