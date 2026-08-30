@@ -14,7 +14,7 @@ Provisions an Aurora PostgreSQL cluster in the data VPC, shared across blue and 
 - Graviton 4 ARM instances (`db.r8g.*`) — RI size flexibility across all environments
 - Blue/green SG toggle — green VPC CIDR added to security group during EKS cutover
 - `az_count` pattern — consistent with `aj-tf-module-vpc`, `aj-tf-module-eks`, `aj-tf-module-valkey`
-- Connection config bundle written to Secrets Manager — consumed by ESO in k8s-manifests
+- Connection config bundle written to Secrets Manager — consumed by ESO in aj-cluster-baseline
 - IAM policy for `rds-db:connect` — attached to Pod Identity role per service namespace
 
 ---
