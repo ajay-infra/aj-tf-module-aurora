@@ -50,7 +50,7 @@ module "iam_auth" {
 }
 
 # ── Connection Config Bundle (Secrets Manager) ────────────────────────────────
-# Stores the Aurora connection configuration for ESO ExternalSecret in k8s-manifests.
+# Stores the Aurora connection configuration for ESO ExternalSecret in aj-cluster-baseline.
 # ESO pulls this secret into each namespace that needs Aurora access as a K8s Secret.
 #
 # Secret JSON schema:

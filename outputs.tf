@@ -32,7 +32,7 @@ output "secret_arn" {
   description = <<-EOT
     Secrets Manager ARN for the Aurora connection config bundle.
     Contains: host, reader_host, port, dbname, username, region, iam_auth.
-    Consumed by ESO ExternalSecret in k8s-manifests.
+    Consumed by ESO ExternalSecret in aj-cluster-baseline.
     No password — app uses RDS IAM auth tokens at runtime.
   EOT
   value       = aws_secretsmanager_secret.aurora_connection.arn

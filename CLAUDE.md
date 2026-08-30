@@ -131,7 +131,7 @@ conn = psycopg2.connect(host=host, user='ai_search_app', password=token,
 ## Outputs Used by Downstream Modules
 
 `aj-infra-release` consumes these as `-var` flags or remote state:
-- `secret_arn` → ESO `ExternalSecret` in k8s-manifests (fetches connection config into K8s Secret)
+- `secret_arn` → ESO `ExternalSecret` in aj-cluster-baseline (fetches connection config into K8s Secret)
 - `iam_auth_policy_arn` → attached to Pod Identity role in `aj-infra-platform` for each service namespace
 - `security_group_id` → optionally added to EKS node group SG rules
 - `cluster_endpoint` + `reader_endpoint` → can be passed to app Helm values
