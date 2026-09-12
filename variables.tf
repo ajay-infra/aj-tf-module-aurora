@@ -7,7 +7,7 @@ variable "aws_account_id" {
 
 variable "cluster_name" {
   type        = string
-  description = "Logical cluster name used in resource naming (e.g. 'ai-search-dev')"
+  description = "Logical cluster name used in resource naming (e.g. 'dev')"
 }
 
 variable "aws_region" {
