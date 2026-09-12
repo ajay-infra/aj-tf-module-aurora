@@ -2,7 +2,7 @@
 # Used with: -var-file=envs/dev.tfvars (plus common.tfvars from aj-infra-release)
 
 environment  = "dev"
-cluster_name = "ai-search-dev"
+cluster_name = "dev"
 aws_region   = "us-east-1"
 
 # Network — filled in by aj-infra-release pipeline from vpc module outputs

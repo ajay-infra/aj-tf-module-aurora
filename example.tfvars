@@ -4,7 +4,7 @@
 aws_account_id = "123456789012"
 
 environment  = "dev"
-cluster_name = "ai-search-dev"
+cluster_name = "dev"
 aws_region   = "us-east-1"
 
 data_vpc_id     = "vpc-00000000000000001"

@@ -40,7 +40,7 @@ All environments use `db.r8g.*` (Graviton 4 ARM). Do not mix instance families a
 module "aurora" {
   source = "github.com/ajay-infra/aj-tf-module-aurora?ref=v1.0.0"
 
-  cluster_name = "ai-search-dev"
+  cluster_name = "dev"
   environment  = "dev"
   aws_region   = "us-east-1"
 
