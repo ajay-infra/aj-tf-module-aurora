@@ -58,7 +58,7 @@ enable_iam_auth = true
 apply_immediately           = false # prod: changes go through maintenance window only
 secret_recovery_window_days = 7
 
-team        = "infra-core"
+team        = "team-0001" # a team code — aj-infra/envs/org/teams.yaml
 cost_center = "infra-2026-q1"
 tags = {
   Owner = "ajay"
