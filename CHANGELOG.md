@@ -4,6 +4,15 @@ All notable changes to this module are documented here. Format loosely follows [
 
 ## [Unreleased]
 
+### Changed — `team` is required and must be a team code
+Breaking: `var.team` no longer defaults to `infra-core`; it must be
+`team-NNNN`, a row in `aj-infra/envs/org/teams.yaml`. Every consumer in the
+estate already passes one (`team = "team-0001"` in aj-infra's tfvars since
+2026-09-12), so nothing changes for them; a caller that forgot would have
+tagged resources — and labelled namespaces — with a slug nobody registered,
+which `require-product-code` now refuses at admission. Next tag is a major.
+
+
 ### Fixed
 - `README.md`'s "Provider Pins" table and `CLAUDE.md`'s module structure line both said Terraform `= 1.7.5` — `providers.tf` actually pins `= 1.10.5`, matching the platform-wide Terraform 1.10.5 / S3-native-locking migration already reflected everywhere else. Same stale-version pattern already found and fixed in `aj-tf-module-vpc` and `aj-tf-module-eks`.
 - `README.md`'s Usage example and `skills.md`'s "Stable ref" pointed at two different, both-wrong org names (`github.com/ajay/...` and `github.com/ajaylakma/...` respectively) — neither matches the real org `ajay-infra`. `skills.md` also referenced a branch `aurora-01` that doesn't exist (only `main` exists locally — confirmed via `git branch -a`). Same pattern already found 3+ times this project (`aj-tf-module-scps`, `aj-tf-module-vpc`, `aj-tf-module-eks`, the old `my-infra`). Fixed both to `github.com/ajay-infra/aj-tf-module-aurora?ref=v1.0.0` and cut the `v1.0.0` tag (this module was fully implemented with no prior release).
